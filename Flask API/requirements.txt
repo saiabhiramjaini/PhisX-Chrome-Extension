@@ -1,0 +1,15 @@
+beautifulsoup4
+bs4
+favicon
+flask
+flask_cors
+numpy
+pandas
+pickle-mixin
+regex
+requests
+tldextract
+urllib3
+whois
+scikit-learn
+googlesearch-python
