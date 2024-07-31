@@ -1,5 +1,5 @@
 
-# PhisX - Chrome Extension for detection of Phising URLs
+# PhisX - Chrome Extension for detection of phishing URLs
 
 ## Problem Statement
 
