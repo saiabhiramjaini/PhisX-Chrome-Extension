@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "version": "1.0.0",
-    "name": "PhishX",
+    "name": "PhisX",
     "description": "Detects phishing website URLs",
     "action": {
         "default_popup": "index.html"
