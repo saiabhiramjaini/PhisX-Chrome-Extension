@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const predict = async (url: string) => {
       try {
-        const response = await axios.post("https://phis-x-latest.onrender.com/predict", { url });
+        const response = await axios.post("https://phisx.abhiramtech.in/predict", { url });
         setStatus(response.data.prediction);
       } catch (error) {
         console.error("Error:", error);

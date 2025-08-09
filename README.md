@@ -73,3 +73,23 @@ If you have any feedback, please reach out me at abhiramjaini28@gmail.com
 
 
 
+npm run build -> dist folder generates
+zip that file and upload
+## Steps to publish a new version:
+
+To publish a new version of the Chrome extension:
+
+1. Build the extension:
+   ```sh
+   npm run build
+   ```
+   This will generate a `dist` folder with the production build.
+
+2. Create a ZIP file of the contents of the `dist` folder:
+   ```sh
+   cd dist
+   zip -r ../chrome-extension.zip .
+   cd ..
+   ```
+
+3. Upload the generated `chrome-extension.zip` file to the Chrome Web Store Developer Dashboard.
