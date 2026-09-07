@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { ShootingStars } from "./components/ui/shooting-stars";
 import { StarsBackground } from "./components/ui/stars-background";
-import Lottie from "lottie-react";
+import { Lottie } from "lottie-react";
 import phishingAnimation from "./assets/lottie/phising.json";
 import legitimateAnimation from "./assets/lottie/legitimate.json";
 
@@ -13,10 +13,11 @@ function App() {
   useEffect(() => {
     const predict = async (url: string) => {
       try {
-        const response = await axios.post("https://phisx.abhiramtech.in/predict", { url });
+        const response = await axios.post("http://127.0.0.1:5000/predict", { url });
         setStatus(response.data.prediction);
       } catch (error) {
         console.error("Error:", error);
+        setStatus("Could not reach local API");
       }
     };
 
@@ -46,17 +47,25 @@ function App() {
           <>
             <span className="text-sm mb-2">
               <span className="font-semibold text-white">Status: </span>
-              <span className={status === "Legitimate website" ? 'text-green-400' : 'text-red-400'}>
+              <span className={
+                status === "Legitimate website"
+                  ? "text-green-400"
+                  : status === "Phishing Website"
+                    ? "text-red-400"
+                    : "text-yellow-400"
+              }>
                 {status}
               </span>
             </span>
-            <div className="w-32 h-32">
-              <Lottie 
-                animationData={status === "Legitimate website" ? legitimateAnimation : phishingAnimation}
-                loop={true}
-                autoplay={true}
-              />
-            </div>
+            {(status === "Legitimate website" || status === "Phishing Website") && (
+              <div className="w-32 h-32">
+                <Lottie
+                  src={status === "Legitimate website" ? legitimateAnimation : phishingAnimation}
+                  loop
+                  autoplay
+                />
+              </div>
+            )}
           </>
         ) : (
           <span className="text-sm text-gray-500">Loading...</span>

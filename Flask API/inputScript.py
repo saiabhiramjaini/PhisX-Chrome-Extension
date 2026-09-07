@@ -1,4 +1,5 @@
-import regex    
+import ipaddress
+import regex
 from tldextract import extract
 import socket
 from bs4 import BeautifulSoup
@@ -9,19 +10,38 @@ import favicon
 import re
 from googlesearch import search
 from urllib.error import URLError
+from urllib.parse import urlparse
 from urllib.request import urlopen
+
+
+def _hostname(url):
+    try:
+        return urlparse(url).hostname or ""
+    except Exception:
+        return ""
+
+
+def _hostname_is_ip(url):
+    host = _hostname(url)
+    if not host:
+        return False
+    try:
+        ipaddress.ip_address(host)
+        return True
+    except ValueError:
+        return False
 
 #checking if URL contains any IP address. Returns -1 if contains else returns 1
 def having_IPhaving_IP_Address(url):
+     if _hostname_is_ip(url):
+         return -1
      match=regex.search(
    '(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\/)|'  #IPv4
                     '((0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\/)'  #IPv4 in hexadecimal
                     '(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}',url)     #Ipv6
      if match:
-        #print match.group()
         return -1
      else:
-        #print 'No matching pattern found'
         return 1
 
 #Checking for the URL length. Returns 1 (Legitimate) if the URL length is less than 54 characters
@@ -73,6 +93,8 @@ def double_slash_redirecting(url):
 
 #Checking for - in Domain. Returns -1 if '-' is found else returns 1.
 def Prefix_Suffix(url):
+    if _hostname_is_ip(url):
+        return -1
     ext = extract(url)
     domain = ext.domain
     if domain.count('-'):
@@ -86,6 +108,8 @@ def Prefix_Suffix(url):
 #Returns 0 if the subDomain contains less than 2 '.'
 #Returns -1 if the subDomain contains more than 2 '.'
 def having_Sub_Domain(url):
+    if _hostname_is_ip(url):
+        return -1
     ext = extract(url)
     subDomain = ext.subdomain
     if subDomain.count('.') <= 2:
@@ -96,12 +120,14 @@ def having_Sub_Domain(url):
     else:
         return -1
 
-#Checking the SSL. Returns 1 if it returns the respomse code and -1 if exceptions are thrown.
+# UCI SSLfinal_State: HTTPS with a valid certificate is legitimate, HTTP is phishing.
 def SSLfinal_State(url):
+    if not url.lower().startswith("https://"):
+        return -1
     try:
-        response = requests.get(url)
+        requests.get(url, timeout=5, verify=True)
         return 1
-    except Exception as e:
+    except Exception:
         return -1
     
 #domains expires on ≤ 1 year returns -1, otherwise returns 1
@@ -390,8 +416,10 @@ def web_traffic(url):
     try:
         response = urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url)
         soup = BeautifulSoup(response.read(), "xml")
-        rank = soup.find("REACH")['RANK']
-        return rank
+        rank = int(soup.find("REACH")['RANK'])
+        if rank < 100000:
+            return 1
+        return 0
     except URLError as e:
         print(f"URLError: {e.reason}")
         return -1

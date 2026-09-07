@@ -4,7 +4,6 @@ import React, {
   useState,
   useEffect,
   useRef,
-  RefObject,
   useCallback,
 } from "react";
 
@@ -53,7 +52,7 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({
   className,
 }) => {
   const [stars, setStars] = useState<StarProps[]>([]);
-  const containerRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const generateStars = useCallback(
     (width: number, height: number): StarProps[] => {
@@ -93,14 +92,15 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({
 
     updateStars();
 
+    const node = containerRef.current;
     const resizeObserver = new ResizeObserver(updateStars);
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
+    if (node) {
+      resizeObserver.observe(node);
     }
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.unobserve(containerRef.current);
+      if (node) {
+        resizeObserver.unobserve(node);
       }
     };
   }, [

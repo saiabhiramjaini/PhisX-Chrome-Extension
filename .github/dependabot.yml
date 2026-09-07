@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /chrome_extension
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: "/Flask API"
+    schedule:
+      interval: weekly
