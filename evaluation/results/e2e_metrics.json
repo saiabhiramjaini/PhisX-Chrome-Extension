@@ -1,0 +1,386 @@
+{
+  "n": 24,
+  "n_phishing": 15,
+  "n_legitimate": 9,
+  "accuracy": 1.0,
+  "phishing_recall": 1.0,
+  "false_positive_rate": 0.0,
+  "confusion_matrix": {
+    "order": [
+      "phishing",
+      "legitimate"
+    ],
+    "tp_phishing": 15,
+    "fn_phishing": 0,
+    "fp_phishing": 0,
+    "tn_legitimate": 9
+  },
+  "latency_s": {
+    "mean": 0.9836559531674235,
+    "p50": 0.03419729199958965,
+    "p95": 7.158517133053465,
+    "heuristic_mean": 1.3812600809615105e-05,
+    "model_mean": 1.6862574821435763
+  },
+  "limitations": [
+    "Google Index and Alexa rank are not instantiated on localhost; extractors return -1 as in production failure mode.",
+    "WHOIS/DNS age features similarly fail closed on synthetic hosts.",
+    "Extension UI was not driven by Selenium; classify_url is the identical function behind POST /predict.",
+    "Automated browser/extension driving remains future work."
+  ],
+  "cases": [
+    {
+      "id": "P01",
+      "url": "http://127.0.0.1:8765/phish/paypal-login",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 2.97920050797984e-05,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1 (IPv4 hostname)",
+        "SSLfinal_State=-1 (HTTP)",
+        "Iframe=-1",
+        "Submitting_to_email=-1 (mailto)",
+        "URL_of_Anchor external links"
+      ]
+    },
+    {
+      "id": "P02",
+      "url": "http://127.0.0.1:8765/phish/secure-account-update",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 2.120799763360992e-05,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1",
+        "URL_Length long path",
+        "HTTP"
+      ]
+    },
+    {
+      "id": "P03",
+      "url": "http://127.0.0.1:8765/phish/verify-account-secure-update-paypal-login-ticket-id-9968459",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 1.5083001926541328e-05,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1",
+        "URL_Length=-1 or 0"
+      ]
+    },
+    {
+      "id": "P04",
+      "url": "http://127.0.0.1:8765/phish/bank-signin",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 1.2208998668938875e-05,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1"
+      ]
+    },
+    {
+      "id": "P05",
+      "url": "http://127.0.0.1:8765/phish/invoice-pdf-view",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 1.2083997717127204e-05,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1"
+      ]
+    },
+    {
+      "id": "P06",
+      "url": "http://127.0.0.1:8765/phish/unlock-mailbox",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 1.0875002772081643e-05,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1"
+      ]
+    },
+    {
+      "id": "P07",
+      "url": "http://127.0.0.1:8765/phish/crypto-wallet-seed",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 1.1167001503054053e-05,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1"
+      ]
+    },
+    {
+      "id": "P08",
+      "url": "http://127.0.0.1:8765/phish/office365-sso",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 9.957999282050878e-06,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_IP=-1"
+      ]
+    },
+    {
+      "id": "P09",
+      "url": "http://paypal.com@127.0.0.1:8765/phish/at-redirect",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 8.875002095010132e-06,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_At_Symbol=-1",
+        "having_IP=-1"
+      ]
+    },
+    {
+      "id": "P10",
+      "url": "http://appleid.apple.com@127.0.0.1:8765/phish/at-apple",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 6.87500141793862e-06,
+      "deploy_path": "heuristic",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "having_At_Symbol=-1"
+      ]
+    },
+    {
+      "id": "P11",
+      "url": "http://localhost:8765/phish/iframe-harvest",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 0.10259820799547015,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "Iframe (page scrape)",
+        "HTTP SSL=-1",
+        "external Request_URL / URL_of_Anchor"
+      ]
+    },
+    {
+      "id": "P12",
+      "url": "http://localhost:8765/phish/mailto-reset",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 0.03602150000369875,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "Submitting_to_email mailto",
+        "phishing HTML"
+      ]
+    },
+    {
+      "id": "P13",
+      "url": "http://localhost:8765/phish/external-assets-login",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 0.027106166002340615,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "Request_URL external images",
+        "Iframe"
+      ]
+    },
+    {
+      "id": "P14",
+      "url": "http://localhost:8765/phish/rightclick-disabled",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 0.03727887500281213,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "on_mouseover / RightClick scripts",
+        "Iframe"
+      ]
+    },
+    {
+      "id": "P15",
+      "url": "http://localhost:8765/phish/multi-brand-anchors",
+      "expected": "Phishing Website",
+      "predicted": "Phishing Website",
+      "correct": true,
+      "latency_s": 0.039951999999175314,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "URL_of_Anchor many foreign hosts"
+      ]
+    },
+    {
+      "id": "L01",
+      "url": "http://localhost:8765/legit/library-home",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 0.03667624999798136,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "hostname not IP",
+        "same-origin anchors",
+        "no iframe",
+        "HTTP SSL=-1 held constant"
+      ]
+    },
+    {
+      "id": "L02",
+      "url": "http://localhost:8765/legit/hours",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 0.03650537499925122,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "localhost lexical features"
+      ]
+    },
+    {
+      "id": "L03",
+      "url": "http://localhost:8765/legit/catalogue",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 0.032894791998842265,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "short path URL_Length=1"
+      ]
+    },
+    {
+      "id": "L04",
+      "url": "http://localhost:8765/legit/about",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 0.03549979200033704,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "clean HTML"
+      ]
+    },
+    {
+      "id": "L05",
+      "url": "http://localhost:8765/legit/search",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 0.03654050000477582,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "GET form to same host (SFH still stubbed -1 in extractor)"
+      ]
+    },
+    {
+      "id": "L06",
+      "url": "http://localhost:8765/legit/contact",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 0.037266334002197254,
+      "deploy_path": "model",
+      "http_status": 200,
+      "live": false,
+      "instantiated_features": [
+        "no mailto"
+      ]
+    },
+    {
+      "id": "L07",
+      "url": "https://www.wikipedia.org/",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 8.850158624998585,
+      "deploy_path": "model",
+      "http_status": null,
+      "live": true,
+      "instantiated_features": [
+        "live HTTPS control: SSLfinal_State likely 1",
+        "not a phishing site"
+      ]
+    },
+    {
+      "id": "L08",
+      "url": "https://www.google.com/",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 7.136747500000638,
+      "deploy_path": "model",
+      "http_status": null,
+      "live": true,
+      "instantiated_features": [
+        "live HTTPS control"
+      ]
+    },
+    {
+      "id": "L09",
+      "url": "https://github.com/",
+      "expected": "Legitimate website",
+      "predicted": "Legitimate website",
+      "correct": true,
+      "latency_s": 7.162358833003964,
+      "deploy_path": "model",
+      "http_status": null,
+      "live": true,
+      "instantiated_features": [
+        "live HTTPS control"
+      ]
+    }
+  ]
+}

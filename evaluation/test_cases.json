@@ -1,0 +1,184 @@
+{
+  "protocol": {
+    "fixture_port": 8765,
+    "phishing_host": "127.0.0.1",
+    "legitimate_host": "localhost",
+    "scheme": "http",
+    "notes": "Same HTTP server. Host name is the experimental factor for having_IP. HTML differs for page-level UCI features. Live HTTPS controls are optional sanity checks, not phishing sites."
+  },
+  "cases": [
+    {
+      "id": "P01",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/paypal-login",
+      "instantiated_features": ["having_IP=-1 (IPv4 hostname)", "SSLfinal_State=-1 (HTTP)", "Iframe=-1", "Submitting_to_email=-1 (mailto)", "URL_of_Anchor external links"],
+      "path": "heuristic+page"
+    },
+    {
+      "id": "P02",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/secure-account-update",
+      "instantiated_features": ["having_IP=-1", "URL_Length long path", "HTTP"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P03",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/verify-account-secure-update-paypal-login-ticket-id-9968459",
+      "instantiated_features": ["having_IP=-1", "URL_Length=-1 or 0"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P04",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/bank-signin",
+      "instantiated_features": ["having_IP=-1"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P05",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/invoice-pdf-view",
+      "instantiated_features": ["having_IP=-1"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P06",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/unlock-mailbox",
+      "instantiated_features": ["having_IP=-1"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P07",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/crypto-wallet-seed",
+      "instantiated_features": ["having_IP=-1"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P08",
+      "expected": "Phishing Website",
+      "url_template": "http://127.0.0.1:{port}/phish/office365-sso",
+      "instantiated_features": ["having_IP=-1"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P09",
+      "expected": "Phishing Website",
+      "url_template": "http://paypal.com@{host}:{port}/phish/at-redirect",
+      "host": "127.0.0.1",
+      "instantiated_features": ["having_At_Symbol=-1", "having_IP=-1"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P10",
+      "expected": "Phishing Website",
+      "url_template": "http://appleid.apple.com@{host}:{port}/phish/at-apple",
+      "host": "127.0.0.1",
+      "instantiated_features": ["having_At_Symbol=-1"],
+      "path": "heuristic"
+    },
+    {
+      "id": "P11",
+      "expected": "Phishing Website",
+      "url_template": "http://localhost:{port}/phish/iframe-harvest",
+      "instantiated_features": ["Iframe (page scrape)", "HTTP SSL=-1", "external Request_URL / URL_of_Anchor"],
+      "path": "model"
+    },
+    {
+      "id": "P12",
+      "expected": "Phishing Website",
+      "url_template": "http://localhost:{port}/phish/mailto-reset",
+      "instantiated_features": ["Submitting_to_email mailto", "phishing HTML"],
+      "path": "model"
+    },
+    {
+      "id": "P13",
+      "expected": "Phishing Website",
+      "url_template": "http://localhost:{port}/phish/external-assets-login",
+      "instantiated_features": ["Request_URL external images", "Iframe"],
+      "path": "model"
+    },
+    {
+      "id": "P14",
+      "expected": "Phishing Website",
+      "url_template": "http://localhost:{port}/phish/rightclick-disabled",
+      "instantiated_features": ["on_mouseover / RightClick scripts", "Iframe"],
+      "path": "model"
+    },
+    {
+      "id": "P15",
+      "expected": "Phishing Website",
+      "url_template": "http://localhost:{port}/phish/multi-brand-anchors",
+      "instantiated_features": ["URL_of_Anchor many foreign hosts"],
+      "path": "model"
+    },
+    {
+      "id": "L01",
+      "expected": "Legitimate website",
+      "url_template": "http://localhost:{port}/legit/library-home",
+      "instantiated_features": ["hostname not IP", "same-origin anchors", "no iframe", "HTTP SSL=-1 held constant"],
+      "path": "model"
+    },
+    {
+      "id": "L02",
+      "expected": "Legitimate website",
+      "url_template": "http://localhost:{port}/legit/hours",
+      "instantiated_features": ["localhost lexical features"],
+      "path": "model"
+    },
+    {
+      "id": "L03",
+      "expected": "Legitimate website",
+      "url_template": "http://localhost:{port}/legit/catalogue",
+      "instantiated_features": ["short path URL_Length=1"],
+      "path": "model"
+    },
+    {
+      "id": "L04",
+      "expected": "Legitimate website",
+      "url_template": "http://localhost:{port}/legit/about",
+      "instantiated_features": ["clean HTML"],
+      "path": "model"
+    },
+    {
+      "id": "L05",
+      "expected": "Legitimate website",
+      "url_template": "http://localhost:{port}/legit/search",
+      "instantiated_features": ["GET form to same host (SFH still stubbed -1 in extractor)"],
+      "path": "model"
+    },
+    {
+      "id": "L06",
+      "expected": "Legitimate website",
+      "url_template": "http://localhost:{port}/legit/contact",
+      "instantiated_features": ["no mailto"],
+      "path": "model"
+    },
+    {
+      "id": "L07",
+      "expected": "Legitimate website",
+      "url_template": "https://www.wikipedia.org/",
+      "instantiated_features": ["live HTTPS control: SSLfinal_State likely 1", "not a phishing site"],
+      "path": "model",
+      "live": true
+    },
+    {
+      "id": "L08",
+      "expected": "Legitimate website",
+      "url_template": "https://www.google.com/",
+      "instantiated_features": ["live HTTPS control"],
+      "path": "model",
+      "live": true
+    },
+    {
+      "id": "L09",
+      "expected": "Legitimate website",
+      "url_template": "https://github.com/",
+      "instantiated_features": ["live HTTPS control"],
+      "path": "model",
+      "live": true
+    }
+  ]
+}

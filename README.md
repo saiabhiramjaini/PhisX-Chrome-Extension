@@ -49,6 +49,12 @@ PhisX is a Chrome extension designed to detect and block phishing URLs in real-t
 
 6. Deployment - AWS EC2 --> [https://phisx.abhiramverse.tech/predict](https://phisx.abhiramverse.tech/predict)
 
+## Evaluation (dissertation results)
+
+Offline metrics, LR vs RF trade-off, controlled HTTP fixtures, and pipeline latency:
+
+See `evaluation/README.md` and `evaluation/DISSERTATION_CORRECTIONS.md`.
+
 
 ## Work flow
 

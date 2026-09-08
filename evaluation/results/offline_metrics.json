@@ -1,0 +1,196 @@
+{
+  "dataset": "/Users/jainisaiabhiram/Desktop/ABHIRAM/Projects/PhisX-Chrome-Extension/model training/phishing.csv",
+  "n_rows": 11055,
+  "n_features": 30,
+  "split": "test_size=0.2, random_state=0, features exclude index column",
+  "positive_class": "phishing encoded as -1",
+  "models": {
+    "Logistic Regression": {
+      "accuracy": 0.9172320217096337,
+      "precision_phishing": 0.9235474006116208,
+      "recall_phishing": 0.893491124260355,
+      "f1_phishing": 0.9082706766917293,
+      "false_negative_rate": 0.10650887573964497,
+      "false_positive_rate": 0.06265664160401002,
+      "confusion_matrix": {
+        "labels": [
+          "phishing (-1)",
+          "legitimate (1)"
+        ],
+        "matrix": [
+          [
+            906,
+            108
+          ],
+          [
+            75,
+            1122
+          ]
+        ],
+        "tp_phishing": 906,
+        "fn_phishing": 108,
+        "fp_phishing": 75,
+        "tn_legitimate": 1122
+      }
+    },
+    "K-NN": {
+      "accuracy": 0.9434644957033017,
+      "precision_phishing": 0.95496417604913,
+      "recall_phishing": 0.9201183431952663,
+      "f1_phishing": 0.9372174786539428,
+      "false_negative_rate": 0.07988165680473373,
+      "false_positive_rate": 0.036758563074352546,
+      "confusion_matrix": {
+        "labels": [
+          "phishing (-1)",
+          "legitimate (1)"
+        ],
+        "matrix": [
+          [
+            933,
+            81
+          ],
+          [
+            44,
+            1153
+          ]
+        ],
+        "tp_phishing": 933,
+        "fn_phishing": 81,
+        "fp_phishing": 44,
+        "tn_legitimate": 1153
+      }
+    },
+    "SVM": {
+      "accuracy": 0.9407507914970602,
+      "precision_phishing": 0.9491353001017294,
+      "recall_phishing": 0.9201183431952663,
+      "f1_phishing": 0.9344016024036054,
+      "false_negative_rate": 0.07988165680473373,
+      "false_positive_rate": 0.04177109440267335,
+      "confusion_matrix": {
+        "labels": [
+          "phishing (-1)",
+          "legitimate (1)"
+        ],
+        "matrix": [
+          [
+            933,
+            81
+          ],
+          [
+            50,
+            1147
+          ]
+        ],
+        "tp_phishing": 933,
+        "fn_phishing": 81,
+        "fp_phishing": 50,
+        "tn_legitimate": 1147
+      }
+    },
+    "Naive Bayes": {
+      "accuracy": 0.6151062867480778,
+      "precision_phishing": 0.5436997319034853,
+      "recall_phishing": 1.0,
+      "f1_phishing": 0.7044112539076068,
+      "false_negative_rate": 0.0,
+      "false_positive_rate": 0.7109440267335004,
+      "confusion_matrix": {
+        "labels": [
+          "phishing (-1)",
+          "legitimate (1)"
+        ],
+        "matrix": [
+          [
+            1014,
+            0
+          ],
+          [
+            851,
+            346
+          ]
+        ],
+        "tp_phishing": 1014,
+        "fn_phishing": 0,
+        "fp_phishing": 851,
+        "tn_legitimate": 346
+      }
+    },
+    "Decision Tree": {
+      "accuracy": 0.9629127091813658,
+      "precision_phishing": 0.9688128772635815,
+      "recall_phishing": 0.9497041420118343,
+      "f1_phishing": 0.9591633466135459,
+      "false_negative_rate": 0.05029585798816568,
+      "false_positive_rate": 0.025898078529657476,
+      "confusion_matrix": {
+        "labels": [
+          "phishing (-1)",
+          "legitimate (1)"
+        ],
+        "matrix": [
+          [
+            963,
+            51
+          ],
+          [
+            31,
+            1166
+          ]
+        ],
+        "tp_phishing": 963,
+        "fn_phishing": 51,
+        "fp_phishing": 31,
+        "tn_legitimate": 1166
+      }
+    },
+    "Random Forest": {
+      "accuracy": 0.9696969696969697,
+      "precision_phishing": 0.9826707441386341,
+      "recall_phishing": 0.9506903353057199,
+      "f1_phishing": 0.9664160401002506,
+      "false_negative_rate": 0.04930966469428008,
+      "false_positive_rate": 0.014202172096908938,
+      "confusion_matrix": {
+        "labels": [
+          "phishing (-1)",
+          "legitimate (1)"
+        ],
+        "matrix": [
+          [
+            964,
+            50
+          ],
+          [
+            17,
+            1180
+          ]
+        ],
+        "tp_phishing": 964,
+        "fn_phishing": 50,
+        "fp_phishing": 17,
+        "tn_legitimate": 1180
+      }
+    }
+  },
+  "deployment_tradeoff": {
+    "test_rows": 2211,
+    "logistic_regression": {
+      "model_size_bytes": 1103,
+      "mean_predict_seconds": 0.00031319306678293896,
+      "std_predict_seconds": 8.409220756348804e-05,
+      "accuracy": 0.9172320217096337,
+      "recall_phishing": 0.893491124260355,
+      "false_positive_rate": 0.06265664160401002
+    },
+    "random_forest": {
+      "model_size_bytes": 20956681,
+      "mean_predict_seconds": 0.04390142910027255,
+      "std_predict_seconds": 0.006036996250665591,
+      "accuracy": 0.9696969696969697,
+      "recall_phishing": 0.9506903353057199,
+      "false_positive_rate": 0.014202172096908938
+    }
+  }
+}
