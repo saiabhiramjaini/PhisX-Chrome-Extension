@@ -9,7 +9,7 @@ pandas==3.0.5
 python-whois==0.9.6
 regex==2026.9.3
 requests==2.34.2
-scikit-learn==1.9.0
+scikit-learn==1.9.1
 tldextract==5.3.2
 urllib3==2.7.0
 matplotlib==3.11.1
